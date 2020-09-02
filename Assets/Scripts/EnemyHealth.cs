@@ -11,6 +11,8 @@ public class EnemyHealth : MonoBehaviour
 
     [SerializeField] GameObject shatterObject;
 
+    [SerializeField] float destroyTime = 1f;
+
     ParticleSystem bloodSpray;
     bool hasSpawnedShatter = false;
     bool bloodHasPlayed = false;
@@ -45,13 +47,23 @@ public class EnemyHealth : MonoBehaviour
     {
         if (isDead && !hasSpawnedShatter && !bloodHasPlayed)
         {
+            bloodHasPlayed = true;
             gameObject.GetComponent<MeshRenderer>().enabled = false;
+            transform.GetChild(2).gameObject.SetActive(false);
+            transform.GetChild(0).gameObject.SetActive(false);
             Instantiate(shatterObject, transform.position, transform.rotation);
             bloodSpray.Play();
             hasSpawnedShatter = true;
-            bloodHasPlayed = true;
+            DespawnEnemy();
         }
     }
+
+
+    void DespawnEnemy()
+    {
+        Destroy(gameObject, destroyTime);
+    }
+
 
     public void TakeDamage(float damage)
     {

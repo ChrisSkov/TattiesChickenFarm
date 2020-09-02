@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+
+    [Header("Player variables")]
+    [SerializeField] float speed = 10f;
+    [SerializeField] float dashForce = 8f;
+    [SerializeField] float timeBetweenDashes = 2f;
+    Vector3 mouseWorldPositon;
+
     Rigidbody playerRB;
-    public float speed;
     Vector3 moveDirection;
     Animator playerAnim;
     int layerMask = 1 << 8;
-    Vector3 mouseWorldPositon;
+    float dashTimer = Mathf.Infinity;
 
     void Start()
     {
@@ -21,7 +27,13 @@ public class PlayerMovement : MonoBehaviour
     {
         Move();
         ControlRotation();
+        SideDash();
     }
+    private void Update()
+    {
+        dashTimer += Time.deltaTime;
+    }
+
 
     private void Move()
     {
@@ -46,5 +58,23 @@ public class PlayerMovement : MonoBehaviour
         Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask);
         mouseWorldPositon = new Vector3(hit.point.x, transform.position.y, hit.point.z) - transform.position;
         transform.rotation = Quaternion.LookRotation(mouseWorldPositon, Vector3.up);
+    }
+
+    void SideDash()
+    {
+        if (Input.GetKeyDown(KeyCode.A) && Input.GetKey(KeyCode.LeftShift) && CanDash())
+        {
+            dashTimer = 0f;
+            playerRB.AddForce(transform.TransformDirection(Vector3.left) * dashForce, ForceMode.Impulse);
+        }
+        if (Input.GetKeyDown(KeyCode.D) && Input.GetKey(KeyCode.LeftShift) && CanDash())
+        {
+            dashTimer = 0f;
+            playerRB.AddForce(transform.TransformDirection(Vector3.right) * dashForce, ForceMode.Impulse);
+        }
+    }
+    bool CanDash()
+    {
+        return dashTimer >= timeBetweenDashes;
     }
 }

@@ -7,16 +7,16 @@ public class Shoot : MonoBehaviour
 {
 
     [Header("Audio")]
-    [SerializeField] AudioClip[] gunSounds = new AudioClip[2];
-    [SerializeField] AudioClip pumpShotgunSound = null;
+    [SerializeField] AudioClip gunSound = null;
     [SerializeField] AudioClip reloadSound = null;
     [Header("Gun variables")]
-    [SerializeField] float maxAmmo = 2;
-    [SerializeField] float currentAmmo;
+    [SerializeField] int maxAmmo;
+    [SerializeField] int currentAmmo;
     [SerializeField] float damage = 10f;
-    [Header("UI objects")]
-    [SerializeField] GameObject shotgunShell1;
-    [SerializeField] GameObject shotgunShell2;
+
+
+    GameObject[] shotgunShells;
+
     AudioSource source;
 
     bool canShoot = true;
@@ -30,6 +30,9 @@ public class Shoot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        shotgunShells = GameObject.FindGameObjectsWithTag("ShotgunShell");
+        maxAmmo = shotgunShells.Length;
         enemyHealth = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyHealth>();
         currentAmmo = maxAmmo;
         source = GetComponent<AudioSource>();
@@ -37,6 +40,8 @@ public class Shoot : MonoBehaviour
         pellets = GetComponentInChildren<ParticleSystem>();
         hitEnemy = pellets.GetComponent<HitEnemy>();
         hitEnemy.SetDamage(damage);
+
+
     }
 
     // Update is called once per frame
@@ -44,10 +49,12 @@ public class Shoot : MonoBehaviour
     {
         FireShot();
         Reload();
-        if(Input.GetKeyDown(KeyCode.Mouse1))
+        if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             anim.SetTrigger("slash");
         }
+
+
     }
 
     void Reload()
@@ -55,8 +62,14 @@ public class Shoot : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             anim.SetTrigger("reload");
+            foreach (GameObject shell in shotgunShells)
+            {
+                shell.SetActive(true);
+            }
         }
     }
+
+
 
     private void FireShot()
     {
@@ -73,14 +86,7 @@ public class Shoot : MonoBehaviour
     {
         currentAmmo = maxAmmo;
         source.PlayOneShot(reloadSound);
-        shotgunShell1.SetActive(true);
-        shotgunShell2.SetActive(true);
-    }
 
-    // Cock Gun anim
-    void PlayReloadSound()
-    {
-        source.PlayOneShot(pumpShotgunSound);
     }
 
     void WeCanShoot()
@@ -97,16 +103,7 @@ public class Shoot : MonoBehaviour
     {
         currentAmmo--;
         pellets.Play();
-        source.PlayOneShot(gunSounds[Random.Range(0, gunSounds.Length)]);
-        if (currentAmmo == 1)
-        {
-            shotgunShell1.SetActive(false);
-        }
-        else if (currentAmmo == 0)
-        {
-            shotgunShell1.SetActive(false);
-            shotgunShell2.SetActive(false);
-
-        }
+        source.PlayOneShot(gunSound);
+        shotgunShells[maxAmmo - currentAmmo - 1].SetActive(false);
     }
 }
