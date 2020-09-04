@@ -233,6 +233,15 @@
     <Reference Include="UnityEditor">
         <HintPath>D:/UnityVersions/2019.4.9f1/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
+    <Reference Include="Pathfinding.ClipperLib">
+        <HintPath>D:/TattiesChickenFarm/Assets/AstarPathfindingProject/Plugins/Clipper/Pathfinding.ClipperLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Pathfinding.Poly2Tri">
+        <HintPath>D:/TattiesChickenFarm/Assets/AstarPathfindingProject/Plugins/Poly2Tri/Pathfinding.Poly2Tri.dll</HintPath>
+    </Reference>
+    <Reference Include="Pathfinding.Ionic.Zip.Reduced">
+        <HintPath>D:/TattiesChickenFarm/Assets/AstarPathfindingProject/Plugins/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
+    </Reference>
     <Reference Include="mscorlib">
         <HintPath>D:/UnityVersions/2019.4.9f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
     </Reference>
@@ -649,6 +658,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="AstarPathfindingProject.csproj">
+      <Project>{03226da6-b7c1-ffbc-0fc4-2133c01b10ae}</Project>
+      <Name>AstarPathfindingProject</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="PackageToolsEditor.csproj">
+      <Project>{cc61c778-652f-e3fb-6754-81ad08da5bfe}</Project>
+      <Name>PackageToolsEditor</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="AstarPathfindingProjectEditor.csproj">
+      <Project>{e2cba0ee-3fad-82ec-9cb7-0c016031632e}</Project>
+      <Name>AstarPathfindingProjectEditor</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
