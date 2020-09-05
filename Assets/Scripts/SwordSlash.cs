@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class SwordSlash : MonoBehaviour
 {
+    [SerializeField] CapsuleCollider swordCollider;
     public float swordDamage = 20f;
     // Start is called before the first frame update
     void Start()
     {
-
     }
 
     // Update is called once per frame
@@ -17,12 +17,16 @@ public class SwordSlash : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
 
-        if (other.tag == "Enemy")
+    private void OnCollisionEnter(Collision other)
+    {
+        Collider myCollider = other.contacts[0].thisCollider;
+        print(myCollider);
+        print(swordCollider);
+        if (other.gameObject.tag == "Enemy" && myCollider == swordCollider)
         {
-            other.GetComponent<EnemyHealth>().TakeDamage(swordDamage);
+            other.gameObject.GetComponent<EnemyHealth>().TakeDamage(swordDamage);
         }
     }
+
 }

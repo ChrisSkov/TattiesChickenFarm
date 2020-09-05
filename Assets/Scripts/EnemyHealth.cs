@@ -12,7 +12,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] GameObject shatterObject;
 
     [SerializeField] float destroyTime = 1f;
-
+    Transform particleHolder;
     ParticleSystem bloodSpray;
     bool hasSpawnedShatter = false;
     bool bloodHasPlayed = false;
@@ -21,6 +21,7 @@ public class EnemyHealth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        particleHolder = transform.GetChild(1).GetComponent<Transform>();
         playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         bloodSpray = GetComponentInChildren<ParticleSystem>();
         currentHealth = maxHealth;
@@ -29,7 +30,7 @@ public class EnemyHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bloodSpray.gameObject.transform.LookAt(playerTransform);
+        particleHolder.transform.LookAt(playerTransform);
         Die();
         SpawnShatterObject();
     }
