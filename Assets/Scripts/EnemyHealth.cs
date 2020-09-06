@@ -4,26 +4,33 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    [SerializeField] float maxHealth = 100f;
-    [SerializeField] float currentHealth;
+    [SerializeField]
+    float maxHealth = 100f;
+
+    [SerializeField]
+    float currentHealth;
 
     [SerializeField] bool isDead = false;
 
     [SerializeField] GameObject shatterObject;
 
     [SerializeField] float destroyTime = 1f;
+
+    [SerializeField] ParticleSystem bloodSpray;
     Transform particleHolder;
-    ParticleSystem bloodSpray;
+
+
     bool hasSpawnedShatter = false;
+
     bool bloodHasPlayed = false;
 
     Transform playerTransform;
+
     // Start is called before the first frame update
     void Start()
     {
         particleHolder = transform.GetChild(1).GetComponent<Transform>();
         playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        bloodSpray = GetComponentInChildren<ParticleSystem>();
         currentHealth = maxHealth;
     }
 
@@ -51,20 +58,19 @@ public class EnemyHealth : MonoBehaviour
             bloodHasPlayed = true;
             gameObject.GetComponent<MeshRenderer>().enabled = false;
             transform.GetChild(2).gameObject.SetActive(false);
+            transform.GetChild(3).gameObject.SetActive(false);
             transform.GetChild(0).gameObject.SetActive(false);
+            Instantiate(bloodSpray, particleHolder.position, particleHolder.rotation);
             Instantiate(shatterObject, transform.position, transform.rotation);
-            bloodSpray.Play();
             hasSpawnedShatter = true;
             DespawnEnemy();
         }
     }
 
-
     void DespawnEnemy()
     {
         Destroy(gameObject, destroyTime);
     }
-
 
     public void TakeDamage(float damage)
     {

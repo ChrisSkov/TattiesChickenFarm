@@ -2,25 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class Shoot : MonoBehaviour
 {
-
     [Header("Audio")]
     [SerializeField] AudioClip gunSound = null;
+
     [SerializeField] AudioClip reloadSound = null;
+
     [Header("Gun variables")]
     [SerializeField] int maxAmmo;
+
     [SerializeField] int currentAmmo;
+
     [SerializeField] float damage = 10f;
 
+    [SerializeField] GameObject bulletSocket;
+
+    [SerializeField] ParticleSystem pellets;
 
     GameObject[] shotgunShells;
 
     AudioSource source;
 
     bool canShoot = true;
-    ParticleSystem pellets;
+
     Animator anim;
 
     EnemyHealth enemyHealth;
@@ -30,18 +35,17 @@ public class Shoot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         shotgunShells = GameObject.FindGameObjectsWithTag("ShotgunShell");
         maxAmmo = shotgunShells.Length;
-        enemyHealth = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyHealth>();
+        enemyHealth =
+            GameObject
+                .FindGameObjectWithTag("Enemy")
+                .GetComponent<EnemyHealth>();
         currentAmmo = maxAmmo;
         source = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
-        pellets = GetComponentInChildren<ParticleSystem>();
         hitEnemy = pellets.GetComponent<HitEnemy>();
         hitEnemy.SetDamage(damage);
-
-
     }
 
     // Update is called once per frame
@@ -53,8 +57,6 @@ public class Shoot : MonoBehaviour
         {
             anim.SetTrigger("slash");
         }
-
-
     }
 
     void Reload()
@@ -69,8 +71,6 @@ public class Shoot : MonoBehaviour
         }
     }
 
-
-
     private void FireShot()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0) && currentAmmo >= 1 && canShoot)
@@ -79,14 +79,11 @@ public class Shoot : MonoBehaviour
         }
     }
 
-
-
     // Reload Anim Event
     void ReloadGunAnim()
     {
         currentAmmo = maxAmmo;
         source.PlayOneShot(reloadSound);
-
     }
 
     void WeCanShoot()
@@ -98,11 +95,14 @@ public class Shoot : MonoBehaviour
     {
         canShoot = false;
     }
+
     //anim event
     void PlayPelletParticles()
     {
         currentAmmo--;
-        pellets.Play();
+        Instantiate(pellets,
+        bulletSocket.transform.position,
+        bulletSocket.transform.rotation);
         source.PlayOneShot(gunSound);
         shotgunShells[maxAmmo - currentAmmo - 1].SetActive(false);
     }
