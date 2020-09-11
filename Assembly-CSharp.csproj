@@ -50,6 +50,9 @@
      <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
      <Compile Include="Assets\Potato\DestroyMe.cs" />
      <Compile Include="Assets\Potato\PlayerMovement.cs" />
+     <Compile Include="Assets\Scripts\EnemyCombat.cs" />
+     <Compile Include="Assets\Scripts\Health.cs" />
+     <Compile Include="Assets\Scripts\FireBallHit.cs" />
     <Reference Include="UnityEngine">
         <HintPath>D:/UnityVersions/2020.1.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
