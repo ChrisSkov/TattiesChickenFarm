@@ -43,11 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 819b4e81520ea9c4dbebd27fc53e476b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputAccelSpeed: 4
-  inputDeccelSpeed: 4
-  directionChangeSpeed: 5
+  inputAccelSpeed: 15
+  inputDeccelSpeed: 15
+  directionChangeSpeed: 10
   leftKey: 97
   rightKey: 100
   upKey: 119
   downKey: 115
-  horizontalMagnitude: 0

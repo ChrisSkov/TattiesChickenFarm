@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - ShotgunShell
+  - VCam
   layers:
   - Default
   - TransparentFX

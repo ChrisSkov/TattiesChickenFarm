@@ -19,6 +19,7 @@ public class FireBallHit : MonoBehaviour
 
     }
 
+
     public void SetDamage(float dmg)
     {
         damage = dmg;

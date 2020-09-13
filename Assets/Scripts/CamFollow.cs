@@ -5,7 +5,7 @@ using UnityEngine;
 public class CamFollow : MonoBehaviour
 {
 
-    [SerializeField] Transform target;
+    [SerializeField] Transform target = null;
     [SerializeField] float smoothing = 5f;
 
     Vector3 offset;
@@ -13,6 +13,7 @@ public class CamFollow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         offset = transform.position - target.position;
     }
 
@@ -21,6 +22,7 @@ public class CamFollow : MonoBehaviour
     {
         Vector3 targetCamPos = target.position + offset;
 
+        transform.LookAt(target);
         transform.position = Vector3.Lerp(transform.position, targetCamPos, smoothing * Time.deltaTime);
     }
 }

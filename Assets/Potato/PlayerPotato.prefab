@@ -288,8 +288,8 @@ GameObject:
   - component: {fileID: 6980926915391920120}
   - component: {fileID: 6980926915391920121}
   - component: {fileID: 6980926915391920124}
-  - component: {fileID: 1848408823}
   - component: {fileID: 52549717}
+  - component: {fileID: 2253378638372471289}
   m_Layer: 0
   m_Name: PlayerPotato
   m_TagString: Player
@@ -344,10 +344,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.28
-  m_Height: 1
+  m_Radius: 0.53
+  m_Height: 1.9005419
   m_Direction: 1
-  m_Center: {x: 0, y: 0.5, z: 0}
+  m_Center: {x: 0, y: 0.64972895, z: 0}
 --- !u!54 &6980926915391920120
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -479,21 +479,6 @@ MonoBehaviour:
   damage: 30
   bulletSocket: {fileID: 6980926915626615722}
   pellets: {fileID: 5404509237704347722, guid: 231354b3b257a274b97843b2f74d9ead, type: 3}
---- !u!114 &1848408823
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6980926915391920125}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afaea02d9861d5a4d89ce42b2f37261f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 10
-  dashForce: 15
-  timeBetweenDashes: 2
 --- !u!114 &52549717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -509,6 +494,19 @@ MonoBehaviour:
   hpBar: {fileID: 1093254472}
   maxHealth: 100
   currentHealth: 100
+--- !u!114 &2253378638372471289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6980926915391920125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adb2885d209a9834ea702aba5011fa33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
 --- !u!1 &6980926915626615722
 GameObject:
   m_ObjectHideFlags: 0

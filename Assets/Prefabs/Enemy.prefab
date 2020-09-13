@@ -455,7 +455,7 @@ Transform:
   m_GameObject: {fileID: 6833568151886904264}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.26, y: 0.8, z: 4.06}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 232247768}
   - {fileID: 83312046}
@@ -575,7 +575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffe5849153a7f89469f1c7f48dfb2d1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 500
   currentHealth: 0
   isDead: 0
   shatterObject: {fileID: 6237718308195327962, guid: fc0bd947d3d29cf4a96bb5af318af080,
@@ -654,7 +654,7 @@ MonoBehaviour:
   rotationSpeed: 360
   slowdownDistance: 0.6
   pickNextWaypointDist: 2
-  endReachedDistance: 4
+  endReachedDistance: 2
   alwaysDrawGizmos: 0
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0
@@ -673,13 +673,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireballPrefab: {fileID: 923509569313467571, guid: f4dc390f02e99f24db14fc12899c7deb,
     type: 3}
-  fireballDamage: 10
-  fireballSpeed: 1
-  timeBetweenFireballs: 2.06
-  destroyTimeAfterHit: 1
+  fireballDamage: 0
+  fireballSpeed: -0.01
+  timeBetweenFireballs: 22.28
+  destroyTimeAfterHit: 0.4
   fireballSocket: {fileID: 1038608295}
-  playerInCombatRange: 8
-  playerInFollowRange: 12
+  playerInCombatRange: -0.8
+  playerInFollowRange: 22.71
   timer: Infinity
 --- !u!1 &6891998991049057872
 GameObject:
@@ -768,6 +768,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: wizardHat
       objectReference: {fileID: 0}
+    - target: {fileID: 5130641915538988940, guid: cb13ce94eb2c67249b51e8d626b66e7b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 5510263060563887414, guid: cb13ce94eb2c67249b51e8d626b66e7b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -853,10 +858,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2512072801973435333}
     m_Modifications:
+    - target: {fileID: 371991183467408745, guid: 7c84f1845cb603944a1167d5672196c8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2820420146234443033, guid: 7c84f1845cb603944a1167d5672196c8,
         type: 3}
       propertyPath: m_Name
       value: magicStaff
+      objectReference: {fileID: 0}
+    - target: {fileID: 2820420146234443033, guid: 7c84f1845cb603944a1167d5672196c8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3202047801447456675, guid: 7c84f1845cb603944a1167d5672196c8,
         type: 3}
@@ -927,6 +942,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 6305365266119920740, guid: 7c84f1845cb603944a1167d5672196c8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6389182683996113917, guid: 7c84f1845cb603944a1167d5672196c8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c84f1845cb603944a1167d5672196c8, type: 3}

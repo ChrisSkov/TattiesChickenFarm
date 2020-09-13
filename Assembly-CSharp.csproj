@@ -39,20 +39,20 @@
      <Compile Include="Assets\Scripts\CamFollow.cs" />
      <Compile Include="Assets\Mert\MertInput\MertInput.cs" />
      <Compile Include="Assets\Scripts\EnemyHealth.cs" />
-     <Compile Include="Assets\Potato\SwordSlash.cs" />
-     <Compile Include="Assets\Potato\SimpleCameraController.cs" />
+     <Compile Include="Assets\Scripts\SwordSlash.cs" />
+     <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
      <Compile Include="Assets\Scripts\DisplayEnemyHealth.cs" />
-     <Compile Include="Assets\Potato\Movement.cs" />
-     <Compile Include="Assets\Potato\Rotation.cs" />
-     <Compile Include="Assets\Potato\Move.cs" />
-     <Compile Include="Assets\Potato\Shoot.cs" />
-     <Compile Include="Assets\Scripts\HitEnemy.cs" />
-     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
-     <Compile Include="Assets\Potato\DestroyMe.cs" />
-     <Compile Include="Assets\Potato\PlayerMovement.cs" />
-     <Compile Include="Assets\Scripts\EnemyCombat.cs" />
+     <Compile Include="Assets\Scripts\Rotation.cs" />
      <Compile Include="Assets\Scripts\Health.cs" />
      <Compile Include="Assets\Scripts\FireBallHit.cs" />
+     <Compile Include="Assets\Scripts\Shoot.cs" />
+     <Compile Include="Assets\Scripts\HitEnemy.cs" />
+     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+     <Compile Include="Assets\Scripts\DestroyMe.cs" />
+     <Compile Include="Assets\PlayerCombat.cs" />
+     <Compile Include="Assets\Mert\MertInput\PlayerMovement.cs" />
+     <Compile Include="Assets\Scripts\EnemyCombat.cs" />
+     <Compile Include="Assets\Scripts\WeaponObj.cs" />
     <Reference Include="UnityEngine">
         <HintPath>D:/UnityVersions/2020.1.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
