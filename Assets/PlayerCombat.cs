@@ -10,12 +10,13 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] float hitDamage = 25f;
     [SerializeField] float hitForce = 3f;
     [SerializeField] int currentlyEquippedWeapon;
-
+    [SerializeField] AudioClip[] punchSound;
     Animator anim;
-
+    AudioSource source;
 
     private void Start()
     {
+        source = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
 
     }
@@ -48,9 +49,9 @@ public class PlayerCombat : MonoBehaviour
         foreach (Collider c in Physics.OverlapSphere(weapons[0].transform.position, hitDistance, mask))
         {
             c.gameObject.GetComponent<EnemyHealth>().TakeDamage(hitDamage);
+            source.PlayOneShot(punchSound[Random.Range(0, punchSound.Length)]);
             if (Physics.Raycast(transform.position, c.transform.position - transform.position, out hit, mask))
             {
-                print(hit);
                 c.GetComponent<Rigidbody>().AddForce(-hit.normal * hitForce, ForceMode.Impulse);
             }
         }

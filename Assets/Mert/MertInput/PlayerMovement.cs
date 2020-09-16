@@ -5,14 +5,19 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] float speed;
+    [SerializeField] float stepSoundDelay;
+    [SerializeField] AudioClip[] footStep;
     Rigidbody playerRB;
     Vector3 moveDirection;
     Animator playerAnim;
     int layerMask = 1 << 8;
     Vector3 mouseWorldPositon;
-
+    AudioSource source;
+    bool isPlayStepSound = false;
+    float runTimer = Mathf.Infinity;
     void Start()
     {
+        source = GetComponent<AudioSource>();
         playerRB = GetComponent<Rigidbody>();
         playerAnim = GetComponent<Animator>();
     }
@@ -22,6 +27,16 @@ public class PlayerMovement : MonoBehaviour
         HandleMovement();
         Rotate();
 
+    }
+    private void Update()
+    {
+        runTimer += Time.deltaTime;
+        if (playerAnim.GetBool("isRunning") && runTimer >= stepSoundDelay)
+        {
+            runTimer = 0;
+            source.PlayOneShot(footStep[Random.Range(0, footStep.Length)]);
+
+        }
     }
     private void HandleMovement()
     {
@@ -41,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
         {
             moveDirection = moveDirection.normalized;
             playerAnim.SetBool("isRunning", true);
+
         }
         else
         {
@@ -61,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
 
         Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask);
         mouseWorldPositon = new Vector3(hit.point.x, transform.position.y, hit.point.z) - transform.position;
-            transform.rotation = Quaternion.LookRotation(mouseWorldPositon, Vector3.up);
+        transform.rotation = Quaternion.LookRotation(mouseWorldPositon, Vector3.up);
 
     }
 }
